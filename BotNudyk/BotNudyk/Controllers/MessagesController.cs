@@ -33,6 +33,11 @@ namespace BotNudyk
                 return HandleSystemMessage(message);
             }
         }
+        [AllowAnonymous]
+        public async Task<bool> Get()
+        {
+            return true;
+        }
 
         private Message HandleSystemMessage(Message message)
         {
