@@ -11,7 +11,8 @@ using Newtonsoft.Json;
 
 namespace BotNudyk
 {
-    [BotAuthentication]
+    //[BotAuthentication]
+    [AllowAnonymous]
     public class MessagesController : ApiController
     {
         /// <summary>
