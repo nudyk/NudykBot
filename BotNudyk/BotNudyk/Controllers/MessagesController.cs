@@ -8,6 +8,7 @@ using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Connector.Utilities;
 using Newtonsoft.Json;
+using ServiceStack;
 
 namespace BotNudyk
 {
@@ -45,7 +46,7 @@ namespace BotNudyk
             if (message.Type == "Ping")
             {
                 Message reply = message.CreateReplyMessage();
-                reply.Type = "Ping";
+                reply.Type = "Ping: " + message.ToJson();
                 return reply;
             }
             else if (message.Type == "DeleteUserData")
@@ -55,20 +56,40 @@ namespace BotNudyk
             }
             else if (message.Type == "BotAddedToConversation")
             {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "Bot Added To Conversation: " + message.ToJson();
+                return reply;
             }
             else if (message.Type == "BotRemovedFromConversation")
             {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "Bot Removed From Conversation: " + message.ToJson();
+                return reply;
             }
             else if (message.Type == "UserAddedToConversation")
             {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "User Added To Conversation: " + message.ToJson();
+                return reply;
             }
             else if (message.Type == "UserRemovedFromConversation")
             {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "User Removed From Conversation: " + message.ToJson();
+                return reply;
             }
             else if (message.Type == "EndOfConversation")
             {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "End Of Conversation: " + message.ToJson();
+                return reply;
             }
-
+            else
+            {
+                Message reply = message.CreateReplyMessage();
+                reply.Type = "Uncnown type'" + message.Type + "': " + message.ToJson();
+                return reply;
+            }
             return null;
         }
     }
